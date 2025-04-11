@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Input Numbers</title>
 </head>
 <body>
+
+<div class="input-wrapper">
+  <h2>Enter Numbers For Binary Search Tree</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <label for="numbers">Numbers (comma separated):</label>
+    <input
+      type="text"
+      id="numbers"
+      [(ngModel)]="numbersInput"
+      name="numbers"
+      placeholder="e.g. 5,3,8,1,4"
+      required
+    />
+    <br />
+
+    <button type="submit">Submit</button>
+    <button type="button" (click)="onShowPrevious()">Show Previous</button>
+  </form>
+</div>
+
 
 </body>
 </html>
