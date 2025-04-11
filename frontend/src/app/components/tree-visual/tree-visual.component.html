@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="tree-container">
+  <h2>Binary Search Tree Visual</h2>
 
-</body>
-</html>
+  <div *ngIf="treeData; else noData">
+    <pre>{{ treeData | json }}</pre>
+  </div>
+
+  <ng-template #noData>
+    <p>No tree data available.</p>
+  </ng-template>
+
+</div>
