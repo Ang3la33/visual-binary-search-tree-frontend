@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { BstService } from "../../services/bst.service";
 
 @Component({
     selector: 'app-input-numbers',
@@ -13,7 +14,7 @@ import { FormsModule } from "@angular/forms";
 export class InputNumbersComponent {
     numbersInput: string = '';
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private bstService: BstService) {}
 
     onSubmit(): void {
         const numberArray = this.numbersInput
