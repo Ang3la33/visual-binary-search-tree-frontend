@@ -22,9 +22,17 @@ export class InputNumbersComponent {
             .map(num => parseInt(num.trim()))
             .filter(num => !isNaN(num));
 
-        console.log('User submitter: ', numberArray);
-
-        //HTTP Request needed here
+        this.bstService.processNumbers(numberArray).subscribe({
+            next: (response) => {
+                console.log('Tree created: ', response);
+                this.router.navigate(['/tree-visual'], {
+                    state: {treeData: response}
+                });
+            },
+            error: (err) => {
+                console.error('Error processing numbers: ', err)
+            }
+        });
     }
 
     onShowPrevious(): void {
