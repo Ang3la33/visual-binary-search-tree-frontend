@@ -3,16 +3,18 @@ import { Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { BstService } from "../../services/bst.service";
+import {TreeVisualComponent} from "../tree-visual/tree-visual.component";
 
 @Component({
     selector: 'app-input-numbers',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, TreeVisualComponent],
     templateUrl: 'input-numbers.component.html',
     styleUrls: ['input-numbers.component.scss']
 })
 export class InputNumbersComponent {
     numbersInput: string = '';
+    showTree: boolean = false;
 
     constructor(private router: Router, private bstService: BstService) {}
 
@@ -22,17 +24,19 @@ export class InputNumbersComponent {
             .map(num => parseInt(num.trim()))
             .filter(num => !isNaN(num));
 
-        this.bstService.processNumbers(numberArray).subscribe({
-            next: (response) => {
-                console.log('Tree created: ', response);
-                this.router.navigate(['/tree-visual'], {
-                    state: {treeData: response}
-                });
-            },
-            error: (err) => {
-                console.error('Error processing numbers: ', err)
-            }
-        });
+        if (numberArray.length > 0) {
+            this.bstService.createTree(numberArray).subscribe({
+                next: (response) => {
+                    console.log('Tree created successfully:', response);
+                    this.bstService.treeData = response;
+                    this.showTree = true;
+                },
+                error: (error) => {
+                    console.error('Error creating tree:', error);
+                    alert('Error creating tree.');
+                }
+            });
+        }
     }
 
     onShowPrevious(): void {

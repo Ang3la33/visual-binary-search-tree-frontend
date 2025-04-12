@@ -6,11 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BstService {
-  private apiUrl = 'http://localhost:8081/process-numbers';
+  treeData: any = null;
 
   constructor(private http: HttpClient) {}
 
-  processNumbers(numbers: number[]): Observable<any> {
-    return this.http.post<any>(this.apiUrl, numbers);
+  createTree(numbers: number[]): Observable<any> {
+    return this.http.post<any>(
+      'http://localhost:8081/api/trees/process-numbers',
+      numbers
+    );
   }
 }
+

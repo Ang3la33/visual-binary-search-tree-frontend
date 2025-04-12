@@ -1,0 +1,8 @@
+<div class="tree-node">
+  <div class="node-value">{{ node.value }}</div>
+
+  <div class="children" *ngIf="node.left || node.right">
+    <app-tree-node *ngIf="node.left" [node]="node.left"></app-tree-node>
+    <app-tree-node *ngIf="node.right" [node]="node.right"></app-tree-node>
+  </div>
+</div>

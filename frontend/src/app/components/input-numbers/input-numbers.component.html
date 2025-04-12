@@ -19,10 +19,13 @@
       required
     />
 
-    <div class="button-group">
-      <button type="submit" class="btn-green">SUBMIT HERE</button>
+    <button type="submit" class="btn-green">SUBMIT HERE</button>
 
+  </form>
+
+    <app-tree-visual *ngIf="showTree"></app-tree-visual>
+
+    <div class="button-group">
       <button type="button" (click)="onShowPrevious()">SHOW PREVIOUS</button>
     </div>
-  </form>
 </div>
