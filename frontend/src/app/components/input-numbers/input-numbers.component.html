@@ -1,8 +1,15 @@
-<div class="input-wrapper">
-  <h2>Enter Numbers For Binary Search Tree</h2>
+<div class="input-page">
+  <h1>
+    Binary Search <span class="tree-emoji">🌲</span>Tree<span class="tree-emoji">🌲</span> Visualizer
+  </h1>
 
-  <form (ngSubmit)="onSubmit()">
-    <label for="numbers">Numbers (comma separated):</label>
+  <form class="input-form" (ngSubmit)="onSubmit()">
+
+    <label for="numbers" class="label-center">
+      Enter numbers here separated by commas:
+    </label>
+
+
     <input
       type="text"
       id="numbers"
@@ -11,9 +18,11 @@
       placeholder="e.g. 5,3,8,1,4"
       required
     />
-    <br />
 
-    <button type="submit">Submit</button>
-    <button type="button" (click)="onShowPrevious()">Show Previous</button>
+    <div class="button-group">
+      <button type="submit" class="btn-green">SUBMIT HERE</button>
+
+      <button type="button" (click)="onShowPrevious()">SHOW PREVIOUS</button>
+    </div>
   </form>
 </div>

@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================
+   RESET / NORMALIZATION
+   ========================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================
+   ROOT & THEME COLORS
+   ========================== */
+:root {
+  --green-dark: rgb(28, 44, 26);
+  --green-light: #dbf4d6;
+  --brown: rgb(122, 65, 34);
+  --brown-dark: rgba(129, 59, 9, 0.82);
+}
+
+/* ==========================
+   BASE TYPOGRAPHY & BODY
+   ========================== */
+html {
+  font-size: 0.7rem;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: DialogInput;
+  font-size: 1.6rem;
+  background-color: var(--green-dark);
+  color: var(--green-light);
+  line-height: 1.6;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* ==========================
+   UTILITY CLASSES
+   ========================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
+.pt-2 { padding-top: 2rem; }
+.pb-2 { padding-bottom: 2rem; }
+
+/* ==========================
+   BUTTON STYLES
+   ========================== */
+button {
+  background-color: var(--brown);
+  color: #dbf4d6;
+  border: none;
+  padding: 1rem 2rem;
+  margin-right: 1.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+}
+
+button:hover {
+  background-color: var(--brown-dark);
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #444;
+  cursor: not-allowed;
+}
+
+/* ==========================
+   INPUT STYLES
+   ========================== */
+input[type='text'] {
+  padding: 1rem;
+  font-size: 1.4rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+  background-color: #f0fff0;
+  color: #222;
+}
