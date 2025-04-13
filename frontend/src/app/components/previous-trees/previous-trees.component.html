@@ -1,4 +1,16 @@
-<div class="previous-trees">
-  <h2>Previous Binary Search Trees</h2>
-  <p>Feature coming soon...</p>
+<div class="previous-header">
+  <h2>🌲 Previous Binary Search Trees 🌲</h2>
+  <button (click)="goBack()" class="back-button">⬅ Back to BST Creator</button>
+</div>
+
+<div class="trees-container">
+  <div *ngIf="trees.length === 0">
+    <p>No previous trees found.</p>
+  </div>
+
+  <div *ngFor="let tree of trees" class="tree-entry">
+    <p><strong>Submitted:</strong> {{ tree.createdAt | date:'medium' }}</p>
+    <p><strong>Input:</strong> {{ tree.inputNumbers || 'None' }}</p>
+    <pre>{{ tree.parsedTree | json }}</pre>
+  </div>
 </div>

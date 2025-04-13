@@ -15,7 +15,7 @@
 :root {
   --green-dark: rgb(28, 44, 26);
   --green-light: #dbf4d6;
-  --brown: rgb(122, 65, 34);
+  --brown: rgb(128, 67, 35);
   --brown-dark: rgba(129, 59, 9, 0.82);
 }
 
@@ -59,7 +59,7 @@ body {
    BUTTON STYLES
    ========================== */
 button {
-  background-color: var(--brown);
+  background-color: var(--brown-dark);
   color: #dbf4d6;
   border: none;
   padding: 1rem 2rem;
@@ -72,7 +72,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--brown-dark);
+  background-color: var(--brown);
 }
 
 button:disabled {

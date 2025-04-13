@@ -1,23 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { BstService} from '../../services/bst.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TreeNodeComponent } from '../tree-node/tree-node.component';
+import { BstService } from '../../services/bst.service';
 
 @Component({
   selector: 'app-tree-visual',
   standalone: true,
-  imports: [CommonModule, TreeNodeComponent],
+  imports: [CommonModule],
   templateUrl: './tree-visual.component.html',
   styleUrls: ['./tree-visual.component.scss']
 })
-export class TreeVisualComponent implements OnInit {
-  treeData: any = null;
-
-  constructor(private bstService: BstService) {}
-
-  ngOnInit(): void {
-    this.treeData = this.bstService.treeData;
-    console.log("TreeVisualComponent initialized. Tree data:", this.treeData);
-  }
+export class TreeVisualComponent {
+  constructor(public bstService: BstService) {}
 }
-

@@ -1,8 +1,8 @@
 <div class="tree-container">
   <h2>Binary Search Tree Visual</h2>
 
-  <div *ngIf="treeData; else noData" class="tree-node-wrapper">
-    <app-tree-node [node]="treeData"></app-tree-node>
+  <div *ngIf="bstService.treeData; else noData" class="tree-node-wrapper">
+    <pre>{{ bstService.treeData | json }}</pre>
   </div>
 
   <ng-template #noData>
