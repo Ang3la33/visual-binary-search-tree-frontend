@@ -98,4 +98,15 @@
   }
 }
 
+.checkbox-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  color: #e0f7df;
+  font-size: 1.5rem;
 
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+  }
+}

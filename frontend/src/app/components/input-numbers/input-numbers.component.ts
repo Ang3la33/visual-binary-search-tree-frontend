@@ -1,26 +1,23 @@
-declare global {
-  interface Window { treeData: any }
-}
-
-import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TreeVisualComponent } from '../tree-visual/tree-visual.component';
+import { Router } from '@angular/router';
 import { BstService } from '../../services/bst.service';
+import { TreeVisualComponent } from '../tree-visual/tree-visual.component';
 
 @Component({
-    selector: 'app-input-numbers',
-    standalone: true,
-    imports: [CommonModule, FormsModule, TreeVisualComponent],
-    templateUrl: './input-numbers.component.html',
-    styleUrls: ['./input-numbers.component.scss']
+  selector: 'app-input-numbers',
+  standalone: true,
+  imports: [CommonModule, FormsModule, TreeVisualComponent],
+  templateUrl: './input-numbers.component.html',
+  styleUrls: ['./input-numbers.component.scss']
 })
 export class InputNumbersComponent {
-    numbersInput: string = '';
-    showTree: boolean = false;
+  numbersInput: string = '';
+  useBalancedTree: boolean = false;
+  showTree: boolean = false;
 
-    constructor(private bstService: BstService, private router: Router) {}
+  constructor(private router: Router, public bstService: BstService) {}
 
   onSubmit(): void {
     const numberArray = this.numbersInput
@@ -28,26 +25,24 @@ export class InputNumbersComponent {
       .map(num => parseInt(num.trim()))
       .filter(num => !isNaN(num));
 
-    if (numberArray.length > 0) {
-      fetch('http://localhost:8081/api/trees/process-numbers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(numberArray)
+    console.log("Use balanced tree:", this.useBalancedTree);
+
+    fetch(`http://localhost:8081/api/trees/process-numbers?balanced=${this.useBalancedTree}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(numberArray)
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.bstService.treeData = data;
+        this.showTree = true;
       })
-        .then(response => response.json())
-        .then(data => {
-          this.bstService.treeData = data;
-          this.showTree = true;
-          console.log('Tree data saved to service:', data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Something went wrong.');
-        });
-    }
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }
 
   onShowPrevious(): void {
-        this.router.navigate(['/previous-trees']);
-    }
+    this.router.navigate(['/previous-trees']);
+  }
 }
