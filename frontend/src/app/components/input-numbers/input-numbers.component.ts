@@ -25,24 +25,33 @@ export class InputNumbersComponent {
       .map(num => parseInt(num.trim()))
       .filter(num => !isNaN(num));
 
-    console.log("Use balanced tree:", this.useBalancedTree);
+    if (numberArray.length > 0) {
+      console.log('Submitting numbers:', numberArray);
+      console.log('Balanced Tree?', this.useBalancedTree);
 
-    fetch(`http://localhost:8081/api/trees/process-numbers?balanced=${this.useBalancedTree}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(numberArray)
-    })
-      .then(response => response.json())
-      .then(data => {
-        this.bstService.treeData = data;
-        this.showTree = true;
+      fetch(`http://localhost:8081/api/trees/process-numbers?balanced=${this.useBalancedTree}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(numberArray)
       })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+        .then(response => response.json())
+        .then(data => {
+          this.bstService.treeData = data;
+          this.showTree = true;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Something went wrong while submitting the tree.');
+        });
+    } else {
+      alert('Please enter valid numbers separated by commas.');
+    }
   }
 
   onShowPrevious(): void {
     this.router.navigate(['/previous-trees']);
   }
 }
+
